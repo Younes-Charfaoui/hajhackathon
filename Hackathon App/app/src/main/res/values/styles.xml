@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ButtonStylesTwo" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ButtonStylesTwoOne" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/deep_green</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ButtonStylesBad" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/deep_red</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
