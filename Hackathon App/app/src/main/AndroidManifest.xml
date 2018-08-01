@@ -19,7 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ValidationActivity" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".LostActivity" />
+        <activity android:name=".ThingLosesActivity" />
+        <activity android:name=".HealthActivity" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>
