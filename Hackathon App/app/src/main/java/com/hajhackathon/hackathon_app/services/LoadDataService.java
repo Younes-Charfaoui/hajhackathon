@@ -3,18 +3,10 @@ package com.hajhackathon.hackathon_app.services;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
-import android.view.Display;
+
 
 
 import com.hajhackathon.hackathon_app.networking.models.RequestPackage;
-import com.hajhackathon.hackathon_app.networking.utilities.HttpUtilities;
-
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 
 /**
