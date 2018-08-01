@@ -1,7 +1,9 @@
-package com.hajhackathon.hackathon_app;
+package com.hajhackathon.hackathon_app.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.hajhackathon.hackathon_app.R;
 
 public class ChatActivity extends AppCompatActivity {
 

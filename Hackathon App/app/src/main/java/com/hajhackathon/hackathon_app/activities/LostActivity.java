@@ -1,13 +1,15 @@
-package com.hajhackathon.hackathon_app;
+package com.hajhackathon.hackathon_app.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class HealthActivity extends AppCompatActivity {
+import com.hajhackathon.hackathon_app.R;
+
+public class LostActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health);
+        setContentView(R.layout.activity_lost);
     }
 }

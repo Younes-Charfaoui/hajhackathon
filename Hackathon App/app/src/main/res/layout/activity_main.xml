@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -42,4 +42,6 @@
         android:layout_gravity="end"
         android:theme="@style/ButtonStylesTwo"
         android:text="Sign in" />
+
+
 </LinearLayout>

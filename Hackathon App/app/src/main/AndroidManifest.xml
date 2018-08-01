@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hajhackathon.hackathon_app">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ValidationActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".LostActivity" />
-        <activity android:name=".ThingLosesActivity" />
-        <activity android:name=".HealthActivity" />
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".activities.ValidationActivity" />
+        <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.LostActivity" />
+        <activity android:name=".activities.ThingLosesActivity" />
+        <activity android:name=".activities.HealthActivity" />
+        <activity android:name=".activities.ChatActivity" />
+
+        <service
+            android:name=".services.LoadDataService"
+            android:exported="false" />
     </application>
 
 </manifest>
