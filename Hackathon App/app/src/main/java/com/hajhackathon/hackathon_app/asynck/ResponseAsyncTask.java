@@ -36,16 +36,18 @@ public class ResponseAsyncTask extends AsyncTask<RequestPackage, Void, Response>
 
         try {
             String response = HttpUtilities.getData(requestPackages[0]);
-            Log.i("Zbo", "doInBackground: " + response);
+            Log.i("Data", "doInBackground: " + response);
             try {
                 JSONObject object = new JSONObject(response);
                 int status = object.getInt("status");
                 return new Response(status);
             } catch (JSONException e) {
+                Log.i("Data", "doInBackground: it was JSON");
                 return null;
             }
 
         } catch (IOException e) {
+            Log.i("Data", "doInBackground: it was IO");
             return null;
         }
 

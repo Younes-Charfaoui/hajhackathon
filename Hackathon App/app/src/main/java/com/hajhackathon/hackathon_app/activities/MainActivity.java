@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ResponseAsyncTask
                 String passport = ((TextInputEditText) findViewById(R.id.passport_text_edit)).getText().toString();
 
                 RequestPackage request = new RequestPackage.Builder()
-                        .addEndPoint("http://192.168.137.1/auth.php")
+                        .addEndPoint("http://192.168.137.1/DZ_dreamSquad/public/auth")
                         .addParams("name", name)
                         .addParams("passport", passport)
                         .addParams("type", String.valueOf(getCategory()))
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements ResponseAsyncTask
 
                 ResponseAsyncTask responseAsyncTask = new ResponseAsyncTask(this);
                 responseAsyncTask.execute(request);
-            }else {
+            } else {
                 Toast.makeText(this, "No internet Connection", Toast.LENGTH_SHORT).show();
             }
         });
