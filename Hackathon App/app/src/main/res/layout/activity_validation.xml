@@ -13,7 +13,7 @@
         android:id="@+id/profile_image"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:scaleType="centerCrop" />
+        android:src="@drawable/avatar" />
 
     <TextView
         style="@android:style/TextAppearance.Holo.Small"
@@ -62,24 +62,24 @@
 
 
     <Button
+        android:id="@+id/alright_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/alright_button"
-        android:theme="@style/ButtonStylesTwoOne"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Alright" />
+        android:layout_marginTop="16dp"
+        android:text="Alright"
+        android:theme="@style/ButtonStylesTwoOne" />
 
     <Button
+        android:id="@+id/problem_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/problem_button"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:theme="@style/ButtonStylesBad"
-        android:text="Problem" />
+        android:text="Problem"
+        android:theme="@style/ButtonStylesBad" />
 
 </LinearLayout>
