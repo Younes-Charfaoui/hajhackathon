@@ -31,6 +31,10 @@
         <service
             android:name=".services.LoadDataService"
             android:exported="false" />
+
+        <activity android:name=".activities.HealthAssActivity" />
+        <activity android:name=".activities.AssistantActivity" />
+        <activity android:name=".activities.MorchidActivity"></activity>
     </application>
 
 </manifest>

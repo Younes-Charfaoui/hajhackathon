@@ -5,11 +5,15 @@
 package com.hajhackathon.hackathon_app.asynck;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.hajhackathon.hackathon_app.networking.models.RequestPackage;
 import com.hajhackathon.hackathon_app.networking.models.Response;
 import com.hajhackathon.hackathon_app.networking.utilities.HttpUtilities;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -32,7 +36,15 @@ public class ResponseAsyncTask extends AsyncTask<RequestPackage, Void, Response>
 
         try {
             String response = HttpUtilities.getData(requestPackages[0]);
-            return null;
+            Log.i("Zbo", "doInBackground: " + response);
+            try {
+                JSONObject object = new JSONObject(response);
+                int status = object.getInt("status");
+                return new Response(status);
+            } catch (JSONException e) {
+                return null;
+            }
+
         } catch (IOException e) {
             return null;
         }

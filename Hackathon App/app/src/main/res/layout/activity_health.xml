@@ -6,4 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".activities.HealthActivity">
 
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="163dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="32dp"
+        android:text="Salam alikome, ////: .. .......
+.. ......... ......... ......... .......
+.. ......... ......... ......... .......
+.. ......... ......... ......... ......."
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioButton
+        android:id="@+id/mld_3"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="RadioButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="229dp" />
+
+    <RadioButton
+        android:id="@+id/others"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="Others"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="309dp" />
+
+    <RadioButton
+        android:id="@+id/mld_1"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="RadioButton"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="149dp" />
+
+    <RadioButton
+        android:id="@+id/mld_4"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="RadioButton"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="269dp" />
+
+    <RadioButton
+        android:id="@+id/mld_2"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:text="RadioButton"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="189dp" />
+
+    <EditText
+        android:id="@+id/nom_mld"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="356dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Signal "
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="424dp" />
+
 </android.support.constraint.ConstraintLayout>

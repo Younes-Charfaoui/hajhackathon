@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.hajhackathon.hackathon_app.R;
 import com.hajhackathon.hackathon_app.asynck.ResponseAsyncTask;
 import com.hajhackathon.hackathon_app.networking.models.RequestPackage;
 import com.hajhackathon.hackathon_app.networking.models.Response;
+import com.hajhackathon.hackathon_app.networking.utilities.NetworkUtilities;
 
 public class MainActivity extends AppCompatActivity implements ResponseAsyncTask.ResponseTaskListener {
 
@@ -17,31 +20,58 @@ public class MainActivity extends AppCompatActivity implements ResponseAsyncTask
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ((RadioGroup) findViewById(R.id.category_group)).setEnabled(false);
         findViewById(R.id.sign_in_button).setOnClickListener(v -> {
 
-            String name = ((TextInputEditText) findViewById(R.id.name_text_edit)).getText().toString();
-            String passport = ((TextInputEditText) findViewById(R.id.passport_text_edit)).getText().toString();
+            if (NetworkUtilities.isConnected(this)) {
 
-            RequestPackage request = new RequestPackage.Builder()
-//                    .addEndPoint()
-                    .addParams("name", name)
-                    .addParams("passport", passport)
-                    .addParams("type", String.valueOf(getCategory()))
-                    .addMethod(RequestPackage.POST)
-                    .create();
+                findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+                findViewById(R.id.login_progress).setVisibility(View.VISIBLE);
 
-            ResponseAsyncTask responseAsyncTask = new ResponseAsyncTask(this);
-            responseAsyncTask.execute(request);
+                String name = ((TextInputEditText) findViewById(R.id.name_text_edit)).getText().toString();
+                String passport = ((TextInputEditText) findViewById(R.id.passport_text_edit)).getText().toString();
+
+                RequestPackage request = new RequestPackage.Builder()
+                        .addEndPoint("http://192.168.137.1/auth.php")
+                        .addParams("name", name)
+                        .addParams("passport", passport)
+                        .addParams("type", String.valueOf(getCategory()))
+                        .addMethod(RequestPackage.POST)
+                        .create();
+
+                ResponseAsyncTask responseAsyncTask = new ResponseAsyncTask(this);
+                responseAsyncTask.execute(request);
+            }else {
+                Toast.makeText(this, "No internet Connection", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
     @Override
     public void OnComplete(Response response) {
         // check the information and send to new activity
-        Intent intent = new Intent(this, ValidationActivity.class);
-        intent.putExtra("type", getCategory());
-        startActivity(intent);
+        if (response.getStatus() == 200) {
+            Intent intent = null;
+            switch (getCategory()) {
+                case 1:
+                    intent = new Intent(this, ValidationActivity.class);
+                    break;
+                case 2:
+                    intent = new Intent(this, HealthActivity.class);
+                    break;
+                case 3:
+                    intent = new Intent(this, AssistantActivity.class);
+                    break;
+                case 4:
+                    intent = new Intent(this, MorchidActivity.class);
+                    break;
+            }
+            startActivity(intent);
+            finish();
+        } else {
+            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+            findViewById(R.id.login_progress).setVisibility(View.GONE);
+        }
     }
 
     public int getCategory() {
@@ -49,13 +79,13 @@ public class MainActivity extends AppCompatActivity implements ResponseAsyncTask
 
         switch (idRadio) {
             case R.id.category_daya3:
-                idRadio = 2;
+                idRadio = 3;
                 break;
             case R.id.category_haj:
                 idRadio = 1;
                 break;
             case R.id.category_health:
-                idRadio = 3;
+                idRadio = 2;
                 break;
             case R.id.category_morchid:
                 idRadio = 4;
