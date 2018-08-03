@@ -1,26 +1,25 @@
 package com.hajhackathon.hackathon_app.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.hajhackathon.hackathon_app.PreferencesManager;
 import com.hajhackathon.hackathon_app.R;
 import com.hajhackathon.hackathon_app.asynck.ResponseAsyncTask;
 import com.hajhackathon.hackathon_app.networking.models.RequestPackage;
-import com.hajhackathon.hackathon_app.networking.models.Response;
 import com.hajhackathon.hackathon_app.networking.utilities.NetworkUtilities;
 
-public class MainActivity extends AppCompatActivity implements ResponseAsyncTask.ResponseTaskListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ((RadioGroup) findViewById(R.id.category_group)).setEnabled(false);
         findViewById(R.id.sign_in_button).setOnClickListener(v -> {
 
             if (NetworkUtilities.isConnected(this)) {
@@ -39,39 +38,36 @@ public class MainActivity extends AppCompatActivity implements ResponseAsyncTask
                         .addMethod(RequestPackage.POST)
                         .create();
 
-                ResponseAsyncTask responseAsyncTask = new ResponseAsyncTask(this);
+                ResponseAsyncTask responseAsyncTask = new ResponseAsyncTask(response -> {
+                    if (response.getStatus() == 200) {
+                        Intent intent = null;
+                        switch (getCategory()) {
+                            case 1:
+                                intent = new Intent(this, ValidationActivity.class);
+                                break;
+                            case 2:
+                                intent = new Intent(this, HealthActivity.class);
+                                break;
+                            case 3:
+                                intent = new Intent(this, AssistantActivity.class);
+                                break;
+                            case 4:
+                                intent = new Intent(this, MorchidActivity.class);
+                                break;
+                        }
+                        startActivity(intent);
+                        new PreferencesManager(this).setLoginHaj(passport, name, getCategory());
+                        finish();
+                    } else {
+                        findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+                        findViewById(R.id.login_progress).setVisibility(View.GONE);
+                    }
+                });
                 responseAsyncTask.execute(request);
             } else {
                 Toast.makeText(this, "No internet Connection", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public void OnComplete(Response response) {
-        // check the information and send to new activity
-        if (response.getStatus() == 200) {
-            Intent intent = null;
-            switch (getCategory()) {
-                case 1:
-                    intent = new Intent(this, ValidationActivity.class);
-                    break;
-                case 2:
-                    intent = new Intent(this, HealthActivity.class);
-                    break;
-                case 3:
-                    intent = new Intent(this, AssistantActivity.class);
-                    break;
-                case 4:
-                    intent = new Intent(this, MorchidActivity.class);
-                    break;
-            }
-            startActivity(intent);
-            finish();
-        } else {
-            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-            findViewById(R.id.login_progress).setVisibility(View.GONE);
-        }
     }
 
     public int getCategory() {
